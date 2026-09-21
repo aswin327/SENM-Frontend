@@ -1108,7 +1108,7 @@ export default function Register() {
 
                   <div className={styles.summaryBlock}>
                     <div>
-                      <div className={styles.summaryLabel}>Name & Contact</div>
+                      <div className={styles.summaryLabel}>Basic details</div>
 
                       <div className={styles.summaryValue}>
                         John Smith
@@ -1130,7 +1130,7 @@ export default function Register() {
 
                   <div className={styles.summaryBlock}>
                     <div>
-                      <div className={styles.summaryLabel}>Professional</div>
+                      <div className={styles.summaryLabel}>PROFESSIONAL DETAILS</div>
 
                       <div className={styles.summaryValue}>
                         IStructE
@@ -1150,7 +1150,47 @@ export default function Register() {
 
                   <div className={styles.summaryBlock}>
                     <div>
-                      <div className={styles.summaryLabel}>Coverage</div>
+                      <div className={styles.summaryLabel}>COVERAGE AREA</div>
+
+                      <div className={styles.summaryValue}>
+                        {coverageTags.length > 0
+                          ? coverageTags.join(", ")
+                          : "None added"}
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      className={styles.summaryEdit}
+                      onClick={() => setWizardStep(3)}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  
+                  <div className={styles.summaryBlock}>
+                    <div>
+                      <div className={styles.summaryLabel}>PRICING</div>
+
+                      <div className={styles.summaryValue}>
+                        {coverageTags.length > 0
+                          ? coverageTags.join(", ")
+                          : "None added"}
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      className={styles.summaryEdit}
+                      onClick={() => setWizardStep(3)}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  
+                  <div className={styles.summaryBlock}>
+                    <div>
+                      <div className={styles.summaryLabel}>PORTFOLIO</div>
 
                       <div className={styles.summaryValue}>
                         {coverageTags.length > 0
