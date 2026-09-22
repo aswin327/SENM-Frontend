@@ -1,4 +1,6 @@
-/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @next/next/no-img-element */
+ 
 "use client";
 
 import React, { useState, ChangeEvent, useRef } from "react";
@@ -410,8 +412,8 @@ export default function Register() {
                 </p>
 
                 <fieldset className={styles.fieldGroup}>
-                  <legend className={styles.visuallyHidden}>
-                    Personal details
+                  <legend>
+                    <span className={styles.visuallyHidden}>Personal details</span>
                   </legend>
 
                   <div className={styles.field} data-field="e1-name">
@@ -490,8 +492,8 @@ export default function Register() {
                 </fieldset>
 
                 <fieldset className={styles.fieldGroup}>
-                  <legend className={styles.visuallyHidden}>
-                    Account details
+                  <legend>
+                    <span className={styles.visuallyHidden}>Account details</span>
                   </legend>
 
                   <div className={styles.field} data-field="e1-password">
@@ -532,8 +534,8 @@ export default function Register() {
                 </p>
 
                 <fieldset className={styles.fieldGroup}>
-                  <legend className={styles.visuallyHidden}>
-                    Professional qualifications
+                  <legend>
+                    <span className={styles.visuallyHidden}>Professional qualifications</span>
                   </legend>
 
                   <div className={styles.field} data-field="e2-specialisms">
@@ -722,8 +724,8 @@ export default function Register() {
                 </p>
 
                 <fieldset className={styles.fieldGroup}>
-                  <legend className={styles.visuallyHidden}>
-                    Service areas
+                  <legend>
+                    <span className={styles.visuallyHidden}>Service areas</span>
                   </legend>
 
                   <div className={styles.field} data-field="e3-coverage">
@@ -805,7 +807,9 @@ export default function Register() {
                 </p>
 
                 <fieldset className={styles.fieldGroup}>
-                  <legend className={styles.visuallyHidden}>Pricing</legend>
+                  <legend>
+                    <span className={styles.visuallyHidden}>Pricing</span>
+                  </legend>
 
                   <div className={styles.pricingCards}>
                     <div className={styles.pricingCard}>
@@ -982,7 +986,9 @@ export default function Register() {
                 </p>
 
                 <fieldset className={styles.fieldGroup}>
-                  <legend className={styles.visuallyHidden}>Portfolio</legend>
+                  <legend>
+                    <span className={styles.visuallyHidden}>Portfolio</span>
+                  </legend>
 
                   <div className={styles.field} data-field="e5-portfolio">
                     <label
@@ -1066,7 +1072,9 @@ export default function Register() {
                 </p>
 
                 <fieldset className={styles.fieldGroup}>
-                  <legend className={styles.visuallyHidden}>Bio</legend>
+                  <legend>
+                    <span className={styles.visuallyHidden}>Bio</span>
+                  </legend>
 
                   <div className={styles.field} data-field="e6-bio">
                     <label htmlFor="e6-bio-input">Bio</label>
