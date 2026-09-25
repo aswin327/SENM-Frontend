@@ -2,15 +2,23 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import styles from './login.module.css';
+import { useAuth } from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 export default function EngineerLogin() {
+  const router = useRouter();
+  const { loginAsync, isLoggingIn } = useAuth();
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [role, setRole] = useState<'client' | 'engineer'>('client');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let valid = true;
     
@@ -29,8 +37,14 @@ export default function EngineerLogin() {
     }
     
     if (valid) {
-      // Proceed with authentication
-      console.log('Authenticating engineer...', { email, password });
+      try {
+        await loginAsync({ email, password });
+        toast.success("Successfully logged in!");
+        router.push('/dashboard'); // or appropriate redirect
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Login failed';
+        toast.error(msg);
+      }
     }
   };
 
@@ -40,12 +54,25 @@ export default function EngineerLogin() {
         <div className={styles.splitLeft}>
           <div className={styles.slContent}>
             <div className={styles.slEyebrow}>Welcome back</div>
-            <h1 className={styles.slH1}>
-              Welcome back. <em>Your matched briefs are waiting.</em>
-            </h1>
-            <p className={styles.slBody}>
-              Sign in to view matched project briefs, manage your profile and track your pipeline.
-            </p>
+            {role === 'client' ? (
+              <>
+                <h1 className={styles.slH1}>
+                  Welcome back. <em>Pick up where you left off with your saved engineers and quotes.</em>
+                </h1>
+                <p className={styles.slBody}>
+                  Sign in to track your project, manage quotes and communicate with engineers &mdash; all in one place.
+                </p>
+              </>
+            ) : (
+              <>
+                <h1 className={styles.slH1}>
+                  Welcome back. <em>Your matched briefs are waiting.</em>
+                </h1>
+                <p className={styles.slBody}>
+                  Sign in to view matched project briefs, manage your profile and track your pipeline.
+                </p>
+              </>
+            )}
             <div className={styles.slStats}>
               <div>
                 <div className={styles.slStatV}>500+</div>
@@ -76,11 +103,24 @@ export default function EngineerLogin() {
             <h2 className={styles.srTitle}>Sign in</h2>
             
             <div className={styles.roleToggle}>
-              <Link href="/login/client" className={styles.roleBtn}>Client</Link>
-              <span className={`${styles.roleBtn} ${styles.active}`}>Engineer</span>
+              <button 
+                type="button" 
+                onClick={() => setRole('client')} 
+                className={`${styles.roleBtn} ${role === 'client' ? styles.active : ''}`}
+              >
+                Client
+              </button>
+              <button 
+                type="button" 
+                onClick={() => setRole('engineer')} 
+                className={`${styles.roleBtn} ${role === 'engineer' ? styles.active : ''}`}
+              >
+                Engineer
+              </button>
             </div>
             
             <form noValidate onSubmit={handleSubmit}>
+              
               <div className={`${styles.field} ${emailError ? styles.error : ''}`}>
                 <label htmlFor="si-email">Email address</label>
                 <input 
@@ -120,7 +160,9 @@ export default function EngineerLogin() {
                 <Link href="/forgot-password">Forgot password?</Link>
               </div>
               
-              <button className={styles.btnG} type="submit">Sign in &rarr;</button>
+              <button className={styles.btnG} type="submit" disabled={isLoggingIn}>
+                {isLoggingIn ? 'Signing in...' : 'Sign in \u2192'}
+              </button>
             </form>
             
             <div className={styles.divider}>or</div>

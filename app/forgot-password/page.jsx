@@ -5,22 +5,32 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import { useAuth } from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 export default function ForgotPasswordPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState(false);
+  const { forgotPasswordAsync, isSendingForgotPassword } = useAuth();
 
   const validEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validEmail(email)) {
       setEmailError(true);
       return;
     }
     setEmailError(false);
-    setIsSuccess(true);
+    
+    try {
+      await forgotPasswordAsync({ email });
+      setIsSuccess(true);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to send reset link';
+      toast.error(msg);
+    }
   };
 
   return (
@@ -162,7 +172,9 @@ export default function ForgotPasswordPage() {
                       />
                       <div className="field-err">Please enter a valid email.</div>
                     </div>
-                    <button className="btn-g" type="submit">Send reset link &rarr;</button>
+                    <button className="btn-g" type="submit" disabled={isSendingForgotPassword}>
+                      {isSendingForgotPassword ? 'Sending...' : 'Send reset link \u2192'}
+                    </button>
                   </form>
                 </div>
               ) : (
