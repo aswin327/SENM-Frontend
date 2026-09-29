@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, IBM_Plex_Sans_Condensed, Be_Vietnam_Pro } from "next
 import "./globals.css";
 import ReactQueryProvider from "../providers/react-query-provider";
 import { Toaster } from "react-hot-toast";
+import { NavigationWrapper } from "../components/layout/NavigationWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,7 +45,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ReactQueryProvider>
-          {children}
+          <NavigationWrapper />
+          <main>
+            {children}
+          </main>
           <Toaster position="top-right" />
         </ReactQueryProvider>
       </body>
