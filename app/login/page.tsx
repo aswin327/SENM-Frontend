@@ -40,7 +40,7 @@ export default function EngineerLogin() {
       try {
         await loginAsync({ email, password });
         toast.success("Successfully logged in!");
-        router.push('/dashboard'); // or appropriate redirect
+        router.push('/'); // or appropriate redirect
       } catch (err) {
         const msg = err instanceof Error ? err.message : 'Login failed';
         toast.error(msg);

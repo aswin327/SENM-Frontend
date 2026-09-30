@@ -82,3 +82,52 @@ export interface Profile {
   contactPhone: string;
   contactCta: string;
 }
+
+export interface UserProfileAPIResponse {
+  _id: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  bio?: string;
+  professional?: {
+    specialisms?: string[];
+    accreditationBody?: string;
+    membershipNumber?: string;
+    yearsOfExperience?: number;
+  };
+  coverageAreas?: Array<{
+    _id?: string;
+    postcodeOrRegion: string;
+  }>;
+  pricing?: {
+    siteSurvey?: {
+      minimumPrice: number;
+      maximumPrice: number;
+      currency?: string;
+    };
+    drawings?: {
+      minimumPrice: number;
+      maximumPrice: number;
+      currency?: string;
+    };
+    fullPackage?: {
+      minimumPrice: number;
+      maximumPrice: number;
+      currency?: string;
+    };
+  };
+  portfolio?: Array<{
+    _id?: string;
+    imageUrl: string;
+    originalFileName: string;
+    mimeType: string;
+    fileSize: number;
+    createdAt?: string;
+  }>;
+  emailVerified?: boolean;
+  registrationCompleted?: boolean;
+  currentRegistrationStep?: number;
+  isActive?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}

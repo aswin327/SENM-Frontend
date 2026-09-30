@@ -1,16 +1,26 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useProfile } from '../../hooks/useProfile';
 
 export default function Overview() {
   const router = useRouter();
+  const { profile, isLoading } = useProfile();
+
+  if (isLoading) {
+    return <div className="p-8">Loading dashboard...</div>;
+  }
+
+  const firstName = profile?.fullName?.split(' ')[0] || 'User';
+  const fullName = profile?.fullName || 'User';
+  const specialisms = profile?.professional?.specialisms?.join(' · ') || 'Engineer';
 
   return (
     <section className="view active" id="overview">
       <div className="ov-hero">
         <div className="ov-hero-copy">
           <div className="label eyebrow">Engineer dashboard · Thursday 17 September</div>
-          <h1>Good morning,<br/><em>James.</em></h1>
+          <h1>Good morning,<br/><em>{firstName}.</em></h1>
           <p>Three active projects are moving. Five new requests are waiting to be reviewed.</p>
           <div className="ov-hero-actions">
             <button className="primary" onClick={() => router.push('/opportunities')}>Review opportunities <span>→</span></button>
@@ -72,7 +82,7 @@ export default function Overview() {
             <button onClick={() => router.push('/profile')}><span><b>Profile completeness</b><small>Finish remaining details</small></span><strong>96% →</strong></button>
           </div>
           <div className="ov-trust-card">
-            <div className="label">SENM VERIFIED</div><strong>James H.</strong><p>MIStructE · CEng<br/>£2M professional indemnity</p><div><span className="status-dot"></span>Available this week</div><button className="link-btn" onClick={() => router.push('/profile')}>Manage profile →</button>
+            <div className="label">SENM VERIFIED</div><strong>{fullName}</strong><p>{specialisms}<br/>£2M professional indemnity</p><div><span className="status-dot"></span>Available this week</div><button className="link-btn" onClick={() => router.push('/profile')}>Manage profile →</button>
           </div>
         </aside>
       </div>

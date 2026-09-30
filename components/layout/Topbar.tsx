@@ -19,8 +19,9 @@ export function Topbar() {
   return (
     <header className="topbar">
       <div className="brand-lockup">
-        {/* Placeholder for logo */}
-        <div style={{ fontWeight: 'bold', fontSize: '18px', color: 'var(--navy)' }}>SENM</div>
+        <Link href="/">
+          <img src="/assets/senm black.svg" alt="SENM Logo" style={{ height: '40px', width: 'auto', display: 'block' }} />
+        </Link>
       </div>
       <nav aria-label="Primary navigation" className="nav">
         {links.map((link) => (
