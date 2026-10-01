@@ -124,10 +124,6 @@ export default function ProfileEditor() {
 
       <ProfileStepper currentStep={currentStep} setCurrentStep={setCurrentStep} />
 
-      <div className="profile-editor-note">
-        <strong>EDITABLE PROFILE</strong>
-        <span>Anything marked <b>ENGINEER SUPPLIED</b> can be changed here. SENM-verified credentials, insurance and verified reviews remain read-only and are maintained through verification.</span>
-      </div>
 
       {currentStep === 1 && <ProfileIdentity data={localData} />}
       {currentStep === 2 && <ProfileExpertise data={localData} />}

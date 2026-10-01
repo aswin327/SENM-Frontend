@@ -34,7 +34,6 @@ export function ProfileStepper({ currentStep, setCurrentStep }: ProfileStepperPr
             <span className="profile-step-number">{step.num}</span>
             <span>
               <strong>{step.title}</strong>
-              <small>{step.desc}</small>
             </span>
           </button>
         );

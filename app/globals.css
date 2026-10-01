@@ -625,8 +625,8 @@ button{cursor:pointer}
 #profile .profile-completion{padding-left:12px;border-left:1px solid var(--border);display:grid;gap:7px}
 #profile .profile-completion strong{font-size:18px}
 #profile .progress{height:4px}
-#profile .profile-stepper{margin-bottom:16px;height:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-#profile .profile-step{padding:12px 14px;border:1px solid var(--border);background:var(--white);font-size:11px;color:var(--muted);text-align:left;display:flex;gap:8px;align-items:center}
+#profile .profile-stepper{margin-bottom:16px;height:auto;display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+#profile .profile-step{padding:12px 14px;border:0;border-right:1px solid var(--border);background:var(--white);font-size:11px;color:var(--muted);text-align:left;display:flex;gap:8px;align-items:center}
 #profile .profile-step-number{font-size:10px;color:var(--muted);font-family:var(--mono)}
 #profile .profile-step strong{font-size:14px}
 #profile .profile-step small{display:none}
